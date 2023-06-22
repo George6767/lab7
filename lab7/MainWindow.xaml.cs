@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +22,48 @@ namespace lab7
     /// </summary>
     public partial class MainWindow : Window
     {
+        Person person;
+        ObservableCollection<Person> people = new ObservableCollection<Person>(); 
         public MainWindow()
         {
             InitializeComponent();
+            person = new Person();
+            stackpanelPerson.DataContext = person;
+            listBox.DataContext = people;
+            Filldata();
+        }
+        private void Filldata()
+        {
+            people.Clear();
+            foreach(Person person in Person.getAllPersons())
+            {
+                people.Add(person);
+            }
+        }
+
+        private void buttonView_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonInsert_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonFind_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonChange_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonDelete_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
