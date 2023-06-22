@@ -13,8 +13,8 @@ namespace lab7
         static SqlConnection connection;
         public int Id { get; set; }
         public string Name { get; set; }
-        public decimal Sun { get; set; }
-        public decimal Sum { get; private set; }
+        public decimal Sum { get; set; }
+
         static Person()
         {
             string strcon = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
@@ -28,7 +28,7 @@ namespace lab7
             }
             connection.Open();
         }
-        public static IEnumerable<Person> getAllPersons()
+        public static IEnumerable<Person> getAllPerson()
         {
             OpenConnection();
             var SQLstr = "SELECT * FROM Person";
@@ -83,7 +83,7 @@ namespace lab7
         }
         public static Person Find(string name)
         {
-            foreach (var person in getAllPersons())
+            foreach (var person in getAllPerson())
             {
                 if (person.Name == name)
                     return person;
@@ -95,5 +95,9 @@ namespace lab7
             return $"№ {Id} Имя: {Name}, Сумма: {Sum:0.000}";
         }
 
+        internal static IEnumerable<Person> getAllPersons()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

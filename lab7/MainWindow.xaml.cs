@@ -23,7 +23,7 @@ namespace lab7
     public partial class MainWindow : Window
     {
         Person person;
-        ObservableCollection<Person> people = new ObservableCollection<Person>(); 
+        ObservableCollection<Person> people = new ObservableCollection<Person>();
         public MainWindow()
         {
             InitializeComponent();
@@ -32,10 +32,11 @@ namespace lab7
             listBox.DataContext = people;
             Filldata();
         }
+
         private void Filldata()
         {
             people.Clear();
-            foreach(Person person in Person.getAllPersons())
+            foreach (Person person in Person.getAllPerson())
             {
                 people.Add(person);
             }
