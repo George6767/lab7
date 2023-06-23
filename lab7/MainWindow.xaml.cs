@@ -17,8 +17,7 @@ using System.Windows.Shapes;
 
 namespace lab7
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// <summary>/// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -32,7 +31,6 @@ namespace lab7
             listBox.DataContext = people;
             Filldata();
         }
-
         private void Filldata()
         {
             people.Clear();
@@ -44,27 +42,68 @@ namespace lab7
 
         private void buttonView_Click(object sender, RoutedEventArgs e)
         {
-
+            Filldata();
         }
 
         private void buttonInsert_Click(object sender, RoutedEventArgs e)
         {
-
+            person.Insert();
+            Filldata();
         }
 
         private void buttonFind_Click(object sender, RoutedEventArgs e)
         {
-
+            person = Person.Find(textBoxName.Text);
+            if (person == null)
+            {
+                MessageBox.Show("нет такой записи");
+            }
+            else
+            {
+                MessageBox.Show(person.ToString());
+            }
         }
 
         private void buttonChange_Click(object sender, RoutedEventArgs e)
         {
-
+            if (listBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Нет выбранной записи");
+                return;
+            }
+            person.Id = ((Person)listBox.SelectedItem).Id;
+            if(textBoxName.Text.Length > 0)
+            {
+                person.Name = textBoxName.Text;
+            }
+            else
+            {
+                person.Sum = ((Person)listBox.SelectedItem).Sum;
+            }
+            decimal d = Convert.ToDecimal(textBoxSum.Text);
+            if(d != 0)
+            {
+                person.Sum = d;
+            }
+            else
+            {
+                person.Name = ((Person)listBox.SelectedItem).Name;
+            }
+            MessageBox.Show(person.ToString());
+            person.Update();
+            Filldata();
         }
 
         private void buttonDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            if (listBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Нет выбранной записи");
+                return;
+            }
+            var id = ((Person)listBox.SelectedItem).Id;
+            Person.Delete(id);
+            Filldata();
         }
     }
 }
