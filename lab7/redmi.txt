@@ -6,3 +6,4 @@ it's working
 43:54 в целом работает, кроме функции: найти, ошибок нет
 48:38 0 er
 1:07:43 ok
+vidio finish oj, but in visualisation and function notvery well..

@@ -39,12 +39,16 @@ namespace lab7_2
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
-
+            Person.Update();
+            Fill();
         }
 
         private void ButtonFind_Click(object sender, RoutedEventArgs e)
         {
-
+            Person person = new Person();
+            WindowPerson windowPerson = new WindowPerson(person);
+            if (windowPerson.ShowDialog() == false) return;
+            MessageBox.Show(person.Find());
         }
     }
 }
